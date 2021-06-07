@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="light_styles.css" rel="stylesheet">
+    <link href="catalog.css" rel="stylesheet">
+    <title>property catalog</title>
+
+    <!--Firebase Libraries-->
+
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+
+</head>
+<body class="full-height-grow">
+    <div class="container">
+        <header class="main-header">
+            <a href="/" class="brand-logo-light">
+                <img src="logo_files/light_bg_full.png" width="280px">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li style="color:#011f28; padding-right: 2.5rem;"><a href="submitproperty.html">add property</a></li>
+                    <li><input class="input-group" type="text" id="searchBar" placeholder="search" style="color:#011F28;"></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="row" id="rowid"></div>
+
+    <script>
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyB3joK7piWfPY72fuahSjMaGBc93iVDj_U",
+            authDomain: "homes-2a852.firebaseapp.com",
+            projectId: "homes-2a852",
+            storageBucket: "homes-2a852.appspot.com",
+            databaseURL: "https://homes-2a852-default-rtdb.asia-southeast1.firebasedatabase.app",
+            messagingSenderId: "955002264254",
+            appId: "1:955002264254:web:affa022685ce5d39461cef"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.firestore();
+    db.settings({ timestampsInSnapshots: true }); 
+        
+    var row = document.getElementById('rowid');
+
+    function renderApt(doc){
+    
+    var dabba = document.createElement('div');
+    dabba.className = 'column';
+    
+    var flipcard = document.createElement('div');
+    flipcard.className= 'flip-card';
+    flipcard.setAttribute('id', 'mycard');
+    flipcard.setAttribute('style','min-width:20rem;');
+    dabba.appendChild(flipcard);
+
+    var flipinner = document.createElement('div');
+    flipinner.className = 'flip-card-inner';
+    flipcard.appendChild(flipinner);
+        
+    var card = document.createElement('div');
+    card.className = 'card';
+    flipinner.appendChild(card);      
+    
+    var flipfront = document.createElement('div');
+    flipfront.className='flip-card-front';
+    card.appendChild(flipfront);
+
+
+    var img = document.createElement('img');
+    img.setAttribute('id','myImg');
+    img.setAttribute('src', doc.data().URL);
+    img.setAttribute('style', 'width:100%');
+    flipfront.appendChild(img);
+    
+    var infodiv = document.createElement('div');
+    infodiv.className = 'info-box';
+    flipfront.appendChild(infodiv);
+
+    var flipback = document.createElement('div');
+    flipback.className='flip-card-back';
+    card.appendChild(flipback);
+
+    var infodivback = document.createElement('div');
+    infodivback.className = 'info-box';
+    infodivback.setAttribute('style','margin-top:8rem;');
+    infodivback.setAttribute('style','text-align:center;');
+    flipback.appendChild(infodivback);
+
+    var mdiv = document.createElement('div');
+    mdiv.className='btn-align';
+    flipback.appendChild(mdiv);
+
+    var mbtn = document.createElement('button');
+    mbtn.className='btn';
+    mbtn.innerText = "pay";
+    mbtn.setAttribute('style','background-color:#c4c4c4');
+    mbtn.setAttribute('onclick',"location.href='pay.html'");
+    mdiv.appendChild(mbtn);
+
+    /*var flipimg = document.createElement('img');
+    flipimg.setAttribute('src', doc.data().URL);
+    flipback.appendChild(flipimg)*/
+
+    var ul = document.createElement('ul');
+    let aptno = document.createElement('li');
+    let bhk = document.createElement('li');
+    let price = document.createElement('li');
+    let addr = document.createElement('li');
+    let docid = document.createElement('li');
+
+    var ulback = document.createElement('ul');
+    let bname = document.createElement('li');
+    let bnum = document.createElement('li');
+
+    aptno.setAttribute('style', 'color: grey; font-size: 1rem;');
+
+    addr.setAttribute('style','color: #011F28; font-size: 1.5rem;');
+
+    bhk.setAttribute('style','color: #6A0030;font-size: 1rem;');
+
+    price.setAttribute('style','color: #6A0030;font-size: 1rem;');
+
+    bname.setAttribute('style','color: #ffd9da; font-size: 1.5rem;');
+
+    bnum.setAttribute('style','color: #c4c4c4;font-size: 1rem;');
+   
+    
+    ul.setAttribute('data-id', doc.id);
+    addr.textContent = doc.data().Name;
+    aptno.textContent = doc.data().Flat;
+    bhk.textContent = doc.data().BHK+" BHK";
+    price.textContent = "Rs. "+doc.data().Price;
+
+    ulback.setAttribute('data-id', doc.id);
+    bname.textContent = doc.data().Broker;
+    bnum.textContent = doc.data().BrokerNo;
+
+    ul.appendChild(addr);
+    ul.appendChild(aptno);
+    ul.appendChild(bhk);
+    ul.appendChild(price);
+
+    ulback.appendChild(bname);
+    ulback.appendChild(bnum);
+
+    infodiv.appendChild(ul);
+    infodivback.appendChild(ulback);
+    row.appendChild(dabba);    
+
+}
+
+    db.collection('Apartments').get().then(snapshot => {
+    snapshot.docs.forEach(doc => {
+        renderApt(doc);
+    });
+});
+
+    var searchbar = document.getElementById("searchBar");
+
+    searchbar.addEventListener("keyup", function(event){
+        if(event.keyCode === 13){
+            clearlist();
+            db.collection('Apartments').get().then(snapshot => {
+        snapshot.docs.forEach(doc => {
+            var fullsearch = doc.data().Name +" "+ doc.data().BHK +" "+ doc.data().Price +" "+ doc.data().Flat;
+            if(fullsearch.includes(searchbar.value))
+                renderApt(doc);
+        });
+    });
+        }
+    });
+
+    function clearlist(){
+        var row = document.getElementById('rowid');
+        row.innerHTML = "";
+    }
+
+    </script>
+    </div>
+    <footer class="main-footer">
+        <nav class="footer-nav">
+            <div class="container">
+                <ul>
+                        <li style="padding-right: 3rem;"><a href="aboutus.html">about us</a></li>
+                        <li style="padding-left: 2rem; padding-right: 16.5rem;"><a href="contactus.html">contact us</a></li>
+                        <li style="padding-left: 21rem;"><button class="btn" onclick="userLogout()">log out</button> </li> 
+                        <script src="logout.js"></script>
+                </ul>
+            </div>
+        </nav>
+    </footer>
+</body>
+</html>

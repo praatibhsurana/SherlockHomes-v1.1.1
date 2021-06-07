@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="light_styles.css" rel="stylesheet">
+    <link href="discover.css" rel="stylesheet">
+    <title>discover</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script> 
+
+</head>
+<body class="full-height-grow">
+    <div class="container">
+        <header class="main-header">
+            <a href="/" class="brand-logo-light">
+                <img src="logo_files/light_bg_full.png" width="280px">
+            </a>
+        </header>
+        <section class="discover-main-section">
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                    <div class="numbertext">1 / 3</div>
+                    <img src="logo_files/t1.jpg" style="width:100%; height:300px;">
+                    <div class="text">Mandavi Emerald</div>
+                </div>
+                
+                <div class="mySlides fade">
+                    <div class="numbertext">2 / 3</div>
+                    <img src="logo_files/t3.png" style="width:100%; height:300px;">
+                    <div class="text">Aditi Parva</div>
+                </div>
+                
+                <div class="mySlides fade">
+                    <div class="numbertext">3 / 3</div>
+                    <img src="logo_files/t4.jpg" style="width:100%; height:300px;">
+                    <div class="text">Shambhavi Apartments</div>
+                </div>
+            
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                <div style="text-align:center">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+
+                
+                <script>
+                    var slideIndex = 1;
+                    showSlides(slideIndex);
+                    
+                    function plusSlides(n) {
+                    showSlides(slideIndex += n);
+                    }
+                    
+                    function currentSlide(n) {
+                    showSlides(slideIndex = n);
+                    }
+                    
+                    function showSlides(n) {
+                    var i;
+                    var slides = document.getElementsByClassName("mySlides");
+                    var dots = document.getElementsByClassName("dot");
+                    if (n > slides.length) {slideIndex = 1}    
+                    if (n < 1) {slideIndex = slides.length}
+                    for (i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "none";  
+                    }
+                    for (i = 0; i < dots.length; i++) {
+                        dots[i].className = dots[i].className.replace(" active", "");
+                    }
+                    slides[slideIndex-1].style.display = "block";  
+                    dots[slideIndex-1].className += " active";
+                    }
+                    </script>   
+            </div>
+            <div class="substance" style="text-align: center;">
+                <div class="title">stressed out about adulting for the first time in your life?
+                    we’ve got you covered.</div>
+                <div class="subtitle">a dedicated platform for students and brokers alike, to ensure a smooth moving out experience</div>
+                <div class="subtitle">browse through our property catalogue, chat with brokers, make payments and move in!</div>
+                <div class="subtitle">no hassle, no confusion, no middle-men</div>
+            </div>
+            <div class="link-txt" style="text-align: center; margin-bottom: .5rem;">
+                <a href="signup.html">let's get started!</a>
+            </div>
+        </section>
+    </div>
+    <footer class="main-footer">
+        <nav class="footer-nav">
+            <div class="container">
+                <ul>
+                        <li style="padding-right: 3rem;"><a href="aboutus.html">about us</a></li>
+                        <li style="padding-left: 2rem; padding-right: 16.5rem;"><a href="contactus.html">contact us</a></li>   
+                        <li style="padding-left: 16rem; padding-right: 3rem;"><a href="signup.html">sign up</a></li>
+                        <li style="padding-left: 2rem;"><a href="login.html">log in</a></li>
+                </ul>
+            </div>
+        </nav>
+    </footer>
+</body>
+</html>

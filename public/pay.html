@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="dark_styles.css" rel="stylesheet">
+    <link href="pay.css" rel="stylesheet">
+    <title>payment</title>
+
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+
+</head>
+<body class="full-height-grow">
+    <div class="container">
+        <header class="main-header">
+            <a href="/" class="brand-logo-dark">
+                <img src="logo_files/dark_bg_full.png" width="280px">
+            </a>
+        </header>
+    <section class="pay-main">
+        <div style="font-size: 2rem; color: #ed8e79;">make payments easily</div>
+        <form class="form-entry" onsubmit="event.preventDefault();return false;">
+            <div class="input-group">
+                <label>name</label>
+                <input type="text" id="name" style="color:#011F28;">                    
+            </div>
+            <div class="input-group">
+                <label>amount</label>
+                <input type="text" id="amount" style="color: #011F28;">
+            </div>
+            <div class="input-group">
+                <label>upi id</label>
+                <input type="text" id="upi" style="color: #011F28;">
+            </div>
+            <div class="input-group">
+                <label>note</label>
+                <input type="text" id="note" style="color: #011F28;">
+            </div>
+            <div class="btn-align">
+                <button class="btn" onclick="submitIn();">make payment</button>
+            </div>
+        </form>
+    </section>
+    <script>
+
+    var firebaseConfig = {
+    apiKey: "AIzaSyB3joK7piWfPY72fuahSjMaGBc93iVDj_U",
+    authDomain: "homes-2a852.firebaseapp.com",
+    projectId: "homes-2a852",
+    storageBucket: "homes-2a852.appspot.com",
+    databaseURL: "https://homes-2a852-default-rtdb.asia-southeast1.firebasedatabase.app",
+    messagingSenderId: "955002264254",
+    appId: "1:955002264254:web:affa022685ce5d39461cef"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  const auth = firebase.auth();
+
+  let db = firebase.firestore();
+
+  document.addEventListener("DOMContentLoaded", function() {
+        n = document.getElementById('name');
+        a = document.getElementById('amount');
+        u = document.getElementById('upi');
+        nt = document.getElementById('note');
+  })
+        
+    function submitIn(){
+            if(isEmpty(n.value)||isEmpty(a.value)||isEmpty(u.value)||isEmpty(nt.value))
+                alert("Please enter valid data.");
+            else
+            {
+                db.collection("Payment").add({
+                    Name : n.value,
+                    Amount : a.value,
+                    Upi : u.value,
+                    Note : nt.value
+                }).then(function(){
+                    alert("Thank you!");
+                    window.location.href="catalog.html";
+                })
+            }
+        }    
+    function isEmpty(value) {
+            if (value == "" || typeof value == 'undefined') 
+                return true;
+            return false;
+        }
+        
+    </script>
+    </div>
+    <footer class="main-footer">
+        <nav class="footer-nav">
+            <div class="container">
+                <ul style="margin-left: 9rem;">
+                    <li><a href="aboutus.html">about us</a></li>
+                    <li style="margin-left: 5rem;"><a href="contactus.html">contact us</a></li>
+                </ul>
+            </div>
+        </nav>
+</footer>
+</body>
+</html>

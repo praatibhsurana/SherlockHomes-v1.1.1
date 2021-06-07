@@ -1,0 +1,84 @@
+.sign-main-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+  margin-top: 2rem;
+}
+
+.sign-main-section .text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.text-container .sign-text {
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  color: #ed8e79;
+}
+
+.sign-main-section .form-entry {
+  background-color: rgba(196, 196, 196, 0.35);
+  width: 50vw;
+  max-width: 50%;
+  padding: 2rem 4rem;
+  border-radius: 20px;
+  align-self: center;
+  min-width: 40vh;
+}
+
+.input-group {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  cursor: text;
+}
+
+.input-group:last-child {
+  margin-bottom: 0;
+}
+
+.input-group label {
+  margin-bottom: 0.5rem;
+}
+
+.input-group input {
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: 12px;
+  box-sizing: border-box;
+  font-size: 1em;
+  padding: 0.5em;
+  color: #011f28;
+  background: rgba(196, 196, 196, 0.35);
+}
+
+.input-group input:focus {
+  border-color: #011f28;
+}
+
+.accent-text {
+  color: #ffd9da;
+  font-size: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.form-entry .btn-align {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+@media (max-width: 900px) {
+  .text-container .sign-text {
+    display: none;
+  }
+
+  .brand-logo-dark {
+    display: flex;
+  }
+}

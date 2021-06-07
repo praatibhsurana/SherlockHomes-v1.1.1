@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="dark_styles.css" rel="stylesheet">
+    <link href="login.css" rel="stylesheet">
+    <title>log in</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+
+	<script src="./form.js"></script>
+
+</head>
+<body class="full-height-grow">
+    <div class="container">
+        <header class="main-header">
+            <a href="/" class="brand-logo-dark">
+                <img src="logo_files\dark_bg_full.png" width="280px">
+            </a>
+        </header>
+        <section class="login-main-section">
+            <div class="text-container">
+                <div class="login-text">
+                    browse.<br>pay.<br>move in.
+                </div>
+            </div>
+            <form class="form-entry" onsubmit="event.preventDefault();return false;">
+                <div class="input-group">
+                    <label>email id:</label>
+                    <input type="email" id="loginEmail" style="color:#011F28;">                    
+                </div>
+                <div class="input-group">
+                    <label>password:</label>
+                    <input type="password" id="loginPassword" style="color: #011F28;">
+                </div>   
+                <div class="btn-align">                   
+                    <button class="btn" onclick="userLogin()" id="Login"> log in </button>
+                    <button class="btn" onclick="googleSignIn()" id="googleSi"> sign in with google </button>
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="dark_styles.css" rel="stylesheet">
+    <link href="submitproperty.css" rel="stylesheet">
+    <title>add property</title>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+
+    <script src='submit.js'></script>
+</head>
+<body class="full-height-grow">
+    <div class="container">
+        <header class="main-header">
+            <a href="/" class="brand-logo-dark">
+                <img src="logo_files/dark_bg_full.png" width="280px">
+            </a>
+        </header>
+        <section class="add-main">
+            <form class="form-entry" onsubmit="event.preventDefault();return false;">
+                <div class="input-group">
+                    <label>property name:</label>
+                    <input type="text" id="name" style="color:#011F28;">
+                </div>
+                <div class="input-group">
+                    <label>bhk:</label>
+                    <input type="text" id="bhk" style="color:#011F28;">
+                </div>
+                <div class="input-group">
+                    <label>rent:</label>
+                    <input type="text" id="price" style="color:#011F28;">
+                </div>
+                <div class="input-group">
+                    <label>flat no:</label>
+                    <input type="text" id="flat" style="color:#011F28;">
+                </div>
+                <div class="input-group">
+                    <label>broker name:</label>
+                    <input type="text" id="bname" style="color:#011F28;">
+                </div>
+                <div class="input-group">
+                    <label>broker contact:</label>
+                    <input type="text" id="bcontact" style="color:#011F28;">
+                </div>
+                <div class="input-group">
+                    <img id="myimg">
+                    <label id="UpProgress"></label>
+                </div>
+                <div class="btn-align">
+                    <button class="btn" id="selectproperty" onclick="selectImage()">select image</button>
+                    <button class="btn" id="uploadproperty" onclick="uploadProperty()">upload property</button>
+                </div>
+            </form>
+            <div class="text-container">
+                <div class="sign-text">submit your property for review</div>
+            </div>
+        </section>
+    </div>  
+    <footer class="main-footer">
+        <nav class="footer-nav">
+            <div class="container">
+                <ul style="margin-left: 9rem;">
+                    <li><a href="aboutus.html">about us</a></li>
+                    <li style="margin-left: 5rem;"><a href="contactus.html">contact us</a></li>
+                </ul>
+            </div>
+        </nav>
+</footer>
+</body>
+</html>
