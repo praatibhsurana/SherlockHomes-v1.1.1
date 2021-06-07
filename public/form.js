@@ -63,7 +63,7 @@ function userLogin() {
 
     const promise = auth.signInWithEmailAndPassword(email.value, password.value);
     promise.catch(e => alert(e.message)).then(function(){
-      alert("Signed in as " + email.value);
+      //alert("Signed in as " + email.value);
     })
 
 }
